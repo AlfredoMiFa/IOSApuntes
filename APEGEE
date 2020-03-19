@@ -1,0 +1,112 @@
+API's de dominio y API's de producto(hace uso de API's de dominio)
+Contract First primero se realizá el contrato de interfaz antes y se entrga al mismo tiempo a front y back
+API's internas solo se usan de manera interna
+API'S externas son utilizadas de manera general
+APIGE es una puerta, fachada, gateway
+APIGEE tiene:
+Traffic Manager
+Security
+Mediation and Orchestration
+Analytics
+Edge-side Storage
+Custom coding
+
+
+Pasos para la publicación de una API
+Diseño de API's
+Creación de API proxies
+Despliegue de Proxy CI/CD
+Integración de Políticas a Proxy
+Conexión de API Proxies a Backend Services
+Pruebas funcionales y de Estrés a API's
+Publicación de API's al Developer Portal
+
+Sprint de dos semanas, duración total de 6 semanas
+Colaboración:
+Jira
+Confluence
+
+Mocks/Futures: usuarios dummy
+
+Estrategia de Branching
+Saltar de ambiente en ambiente oara llegar hasta producción
+
+API's es más configuración que desarrollo
+Se usa swagger para los contratos de interfaz
+
+Basepath: direccion/area o area/funcion a realizar/v1
+Catalogos, altas, recursos
+
+En APIGEE es necesario regresar los códigos https(200,201,400,404,500)
+
+Integration test se ejecuta de manera local
+config-generated para generar los archivos mock(son archivos json)
+mock-directory donde se encuentran los mocks
+verbo de acuerdo a la calificacion que le demos
+switch - van nuestros parametros de entrada
+jsonPath leer $.nombreCampo puede llegar $.direccion.calle(objeto tipo direccion con su campo calle)
+switchResponses para dar a nuestros parametros de salidas sus valores respectivos
+Hay que escampar los valores especiales, como espacios
+Formato: $.nombreAlfredo%2Miranda
+response":{"post"{valor por default}}
+ConsumerKey y ConsumerPassword para autentificar
+los primeros dos bloques del Future no se modifican, ya están configurados
+Los mocks son puros archivos json con datos dummy
+Los future también son datos dummy que deben hacer coincidencia con el mock definido
+En los servidores se puede quitar el base path y solo dejar el path, en integration test es necesario tener el basePath completo
+Un comentario simple desplega en los 3 servidores: jenkins, git y apegee
+git commit -m "[probar]" prueba mocks y futures en los servidores y prueba las credenciales que nos son dadas
+git commit -m "[ambientes]" kum, target,server,caches
+git commit -m "[componente]" productos, app, developers
+git commit -m "[producto]" actualiza un producto ya definido en producción
+git commit -m "[app-key]" actualiza una app existente
+
+QUE ES UN PRODUCTO, DEVELOPER Y APP
+
+Un PRODUCTO tiene API's
+Puede contener N API's que son pedidas por un área en especifico
+Un DEVELOPER es el encargado de esa app
+Una APP tiene usuario y password
+
+Un Shared Flow es una API compartida(esta regido por una política)
+API es un flujo para hacer algo
+Shared Flow Seguridad-Identidad(puede tener N API's)
+
+CACHES VARIABLES
+Variables que les damos un valor desde base de datos(podemos decirle cuanto va a durar esa variable)
+KVM = Key Value Maps
+configuracion-ID-Variable
+{
+	"url":"prod"
+}
+TargetServer
+Se guarda una IP(10.51.57.97) y el puerto(8080)
+TLS Keystore Tengan un canal de dos comunicacines de forma segura
+
+APIGEE esta dividida en dos partes
+API proxy(ProxyEndPoint, TargetEndPoint)
+DefaultFaultRule si algo falla en ProxyEndPoint se termina ahí la petición
+ProxyEndPoint por lo regular va toda nuestra seguridad
+TargetEndPoint por lo regular va toda nuestra lógica
+Un API solo llega a un backend, puede llegar a más de uno pero es necesario agregar politicas.
+
+APIGEE no funciona como banlanceador, este solo se conecta a nuestro balanceador
+
+TIPOS DE POLITICAS
+Manejo de trafico: Debe soportar n conexiones por minuto o segundo dependiendo lo que diga el usuario. (ps: Peticiones por segundo) (pm: Peticiones por minuto), la configuración es por API y no por usuario
+cache, securidad, mediación y extensiones
+Se deben vincular las politicas a nuestras API's
+
+KVM: son mapas de valores
+Mapa de url's
+Mapa de llaves
+Mapa de cuentas
+
+Politica generar token(esta política siempre debe ser generada para cada producto)
+Signo de admiración significa que esta fallando esa política
+Flecha curveada: no esta entrando a esa política
+
+AssignMessage
+Envio de mensajes, aquí se hace toda la mediación
+EV: ExtractVariable(extraer variables)
+Static-Medition: Aquí se guardan los datos para realizar reportes o gráficas.
