@@ -1,0 +1,3 @@
+Cuando tu copias una estructura, todas las cosas son duplicadas, incluyendo todos sus valores. Esto significa que cambiar una copia de una estructura no cambia las otras copias(todas ellas son individuales)
+Con las clases, cada copia de un objeto apunta a la misma del objeto original, así que si tu cambias una todas cambian.
+Swift llama a las estructuras como "tipos de valores" por que estos apuntan justo a un valor, y las clases "tipos de referencia" por que estos objetos justo comparten la referencia a el valor real.

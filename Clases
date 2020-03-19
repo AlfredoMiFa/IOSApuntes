@@ -1,0 +1,64 @@
+Swift tiene otro camino para construir tipos de datos complejos llamados clases.
+Lo que diferencia principalmente a una clase de una estructura es lo siguiente:
+No tienes en automatico el inicializador memberwise en tus clases, necesitas escribir el tuyo.
+Puedes definir una clase que se base en otra clase, agregando cualquier cosa nueva que quieras.
+Cuando tu creas una instancia de una clase esta es llamada como objeto. Si copias ese objeto, ambas copias apuntan a los mismos datos por defecto, cambia una, y la copia también cambia.
+No puedes escribir una función antes que tu método init, por que este es especial.
+Debido a que los nombres de los parámetros que se pasan son los mismos que los nombres de las propiedades se debe usar self.
+Ejemplo:
+class Person1 {
+    var clothes: String
+    var shoes: String
+    
+    init(clothes: String, shoes: String) {
+        self.clothes = clothes
+        self.shoes = shoes
+    }
+}
+
+La segunda diferencia entre clases y estructuras, estas clases pueden construirse unas sobre otras para producir cosas mejores, conocida como clase inheritance.
+Ejemplo:
+class Singer {
+	var name: String
+	var age: Int
+
+	init(name: String, age: Int) {
+		self.name = name
+		self.age = age
+	}
+
+	func sing() {
+		print("La la la la")
+	}
+}
+De esta manera obtenemos todos los métodos y propiedades de una clase hacia otra.
+class CountrySinger: Singer {
+    
+}
+De la siguiente manera se sobre escribe una función de una super-clase dentro de una sub-clase
+class CountrySinger: Singer {
+    override func sing() {
+        print("Override")
+    }
+}
+var tot = CountrySinger(name: "Taylor", age: 25)
+tot.sing()
+
+De la siguiente manera realizamos la herencia a la vez que agregamos una nueva propiedad a la sub-clase además de que le pasamos los valores a la super-clase.
+class HeavyMetalSinger: Singer {
+    var noiseLevel: Int
+    
+    init(name: String, age: Int, noiseLevel: Int) {
+        self.noiseLevel = noiseLevel
+        super.init(name: name, age: age)
+    }
+    
+    override func sing() {
+        print("Realizando herencia")
+    }
+}
+
+var tut = HeavyMetalSinger(name: "Taylor", age: 25, noiseLevel: 5)
+tut.sing()
+El por que se hace referencia a la super-clase es por que Swift requiere que todas las propiedades no opcionales rengan valor.
+La trasmisión de datos a la super-clase se realiza mediante una llamada al método.

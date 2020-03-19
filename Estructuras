@@ -1,0 +1,7 @@
+Las estructuras son tipos de datos complejos, lo que significa que están hechas de multiples valores.
+Son faciles de crear por que en autómatico generalo que se llama inicializador memberwise.
+La copia de una estructura, al cambiar sus valores de alguna manera, los valores de la estructura original se conservan.
+
+FUNCIONES DENTRO DE ESTRUCTURAS
+Se pueden generar funciones dentro de una estructura.
+Algo que no se ve a simple vista dentro del código, es que una función que es creada dentro de una estructura es llamada método.

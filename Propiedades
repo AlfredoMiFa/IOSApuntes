@@ -1,0 +1,47 @@
+Nosotros tenemos dos caminos para observar una propiedad: willSet and didSet, y ellos son llamados antes o después de que una propiedad a sido cambiada.
+En willSet Swift provee a tu código con un valor especial llamado newValue que contiene el valor de la nueva propiedad, and en didSet obtienes oldValue que representa el valor previo.
+Ejemplo:
+struct Person2 {
+    var clothes: String {
+        willSet {
+            updateUI(msg: "Estoy cambiando de \(clothes) a \(newValue)")
+        }
+        didSet {
+            updateUI(msg: "Justo he cambiado de \(oldValue) a \(clothes)")
+        }
+    }
+}
+
+func updateUI(msg: String) {
+    print(msg)
+}
+var taty = Person2(clothes: "T-shirts")
+taty.clothes = "short skirts"
+Salida:
+Estoy cambiando de T-shirts a short skirts
+Justo he cambiado de T-shirts a short skirts
+
+PROPIEDADES CALCULADAS
+Es posible hacer propiedades que sean código detrás de escenas. Por ejemplo cuando nosostros realizamos el llamado del método uppercased(), en lugar de cada cadena simpre se lamacena una versión en mayúscula de sí misma.
+Ejemplo de propiedad calculada:
+struct Person {
+	var age: Int
+	var ageInDogYears: Int {
+		get {
+			return age * 7
+		}
+	}
+}
+var fan = Person(age: 25)
+print(fan.ageInDogYears)
+
+PROPIEDADES Y MÉTODOS ESTATICOS
+Swift permite crear propiedades y métodos que pertenecen a un tipo, en lugar de instancias de un tipo. Esto es útil para organizar datos de manera significativa al alamcenar datos compartidos. Estas son las llamadas propiedades estaticas, y justo pueden ser creadas usando la palabra reservada static. Se accede a la propiedad usando elnombre completo del tipo.
+Ejemplo:
+struct TaylorFan {
+	static var favoriteSong = "Look What You Made Me Do"
+	var name: String
+	var age: Int
+}
+let fan = TaylorFan(name: "James", age: 25)
+print(TaylorFan.favoriteSong)

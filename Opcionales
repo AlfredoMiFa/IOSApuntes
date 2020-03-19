@@ -1,0 +1,79 @@
+Swift es un lenguaje muy seguro
+Un valor opcional es uno que puede tener un valor o no tener
+Para indicarle a Swift que retorne o no un valor a una función, debemos usarlo de la siguiente manera:
+func getHaterStatus() -> String? {
+	return "hate"
+}
+Esto es llamado un String opcional
+Para denotar un valor nulo o inexistente se usa la palabra nil
+Ejemplo
+func getHaterStatus(weather: String) -> String? {
+	if wheater == "sunny"{
+		return nil
+	} else {
+		return "hate"
+	}
+}
+La ausencia de valor en Swift es reprentada con nil
+func getHaterStatus(weather: String) -> String? {
+	if weather == "sunny" {
+		retunr nil
+	} else {
+		return "Hate"
+	}
+}
+De la siguiente manera creamos una varible opcional
+var status: String?
+O asignando el valor directamente a la variable sin indicar de que tipo será
+var status = getHaterStatus(weather: "rainy")
+Swift usa el unwraping de la siguiente manera:
+if let unwrappedStatus = status {
+	//unwrappedStatus contains a non-optional value!
+} else {
+	
+}
+Desenvoltura opcional
+Hace dos cosas la mismo tiempo: comprueba si un opcional tiene un valor y, de ser así, se desenvuelve en un tipo no opcional y luego ejecuta un bloque de código
+Forzar la desenvoltura de los opcionales
+Swift permite anular sus seguridad utilizando el signo de interrogación.
+Si se intenta esto en una variable que puede o no tener valor, el código se rompera.
+Ejemplo:
+func yearAlbumReleased(name: String) -> Int? {
+	if name == "Taylor Swift" { return 2006}
+	if name == "Fearless" {return 2008}
+	if name == "Speak now" {return 2010}
+	if name == "Red" {return 2012}
+	if name == "1989" {return 2014}
+	return nil
+}
+
+ENCADENAMIENTO OPCIONAL
+Swift tiene dos tecnicas que ayudan a hacer de baja complejidad tu código.
+La primera es el encadenamiento opcional: permite a tu código ser ejecutado solo si tu opcional tiene un valor.
+Ejemplo:
+func yearAlbumReleased(name: Int) -> String? {
+    if name == 2006 { return "Taylor Swift"}
+    if name == 2008 {return "Fearless"}
+    if name == 2010 {return "Speak now"}
+    if name == 2012 {return "Red"}
+    if name == 2014 {return "1989"}
+    return nil
+}
+
+let album = yearAlbumReleased(name: 2010)?.uppercased()
+print("The album is \(album)")
+En este ejemplo si tenemos una cadena convertimos a cada una de sus letras en mayusculas.
+
+OPERADOR DE FUSION NULA
+Lo que hace es: usa el valor A si puedes, pero si el valor de A es nulo entonces usa el valor B.
+Ejemplo:
+func yearAlbumReleased(name: Int) -> String? {
+    if name == 2006 { return "Taylor Swift"}
+    if name == 2008 {return "Fearless"}
+    if name == 2010 {return "Speak now"}
+    if name == 2012 {return "Red"}
+    if name == 2014 {return "1989"}
+    return nil
+}
+let album2 = yearAlbumReleased(name: 2002) ?? "desconocido"
+print("The album is \(album2)")

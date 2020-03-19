@@ -1,0 +1,97 @@
+import UIKit
+
+var str = "Hello, playground"
+print(str)
+/*
+ Variables declaradas explicitamente
+ var hola : String = "hola"
+ var numero : Int = 7
+ var doble : Double = 5.6
+ Variables declaradas implicitamente
+ var hola = "hola"
+ Tiene peso en memoria, para poder cambiar su valor a lo largo de la ejecucion
+ */
+
+let num = 12
+print(num)
+/*
+ Ya tiene un valor reservado en memoria
+ */
+/*
+ Opcionales: La forma en la que convertimos una variable en opcional, puede que tenga un valor o no
+ */
+var edad : Int? = nil
+edad = 5
+//print(edad ?? "No edad") Se agrega un valor por defecto
+//print(edad!) se forza a que siempre tenga valor
+//print(edad as Any) se realiza un cast
+if let age = edad {//Optional binding
+    print(age)
+}else{
+    print("No tiene valor")
+}
+
+for variableValor in arrayValores {
+	print(variableValor)
+}
+
+//
+La accion de pasar de una vista a otra se le conoce como segue
+La accion de regresar a una vista anterior se conoce como dismiss(self.dismiss)
+La accion de regresar de una vista x a la primera vista se le conoce como on-one-segue(segue: UIStoryboardSegue)
+Para la navegacion entre storyborad es necesarion un storyboard-reference(seleccionar a que storyboard se quiere ir)
+NavigationController se usa para cambiar de color la barra de arriba, poner titulo a nuestra vista
+Para el envio de parametros de una clase a otra es necesario hacer el segue que sea controlado por toda la vista
+Para el envio de parametros de una vista a otra se utiliza la funcion performSegue con el identificador del segue y desde que controller se hace el envio de parametros; la funcion prepare es la encargada de realizar el cast de la vista dentro de una constante y asi poder acceder a las propiedades de la segunda vista.
+Para regresar usando viewcontroller es nesario usar la funcion de navigationController?.popViewController(animated: true)
+Segue.destination sirve para enviar datos de una vista a otra, segue.source para recibir parametros de una vista a otra
+El tab bar controller siempre debe ser el index cuando es utilizado
+
+El notificationCenter es un observador para ver que pasa con la pantalla de IOs
+guard let es para la creacion de constantes seguras
+
+SizeClasses permiten hacer aplicaciones responsivas en base a rasgos o variaciones
+
+Info.plist ahí se piden permisos
+
+Delegado son como una extension de una clase, recuperar ayuda de otro lado
+
+UNUserNotificationCenterDelegate PARA LAS NOTIFICACIONES
+
+MessagingDelegate TAMBIÉN SIRVE PARA LAS NOTIFICACIONES
+
+Estructuras aplica mejor para modelos
+
+Las clases si te permiten cambiar el valor de una variable
+
+Un diccionario es un JSON, clave - valor
+
+Opcionales - buscar valores, pero si no lo encuentra no haga nada
+
+?? forzar a que sea el tipo que indico
+
+Ciclo de vida de iOS
+Este se encuentra en appDelegate
+El ciclo de vida de una app es el evento o estado en el que se encuentra nuestra app desde que la abrimos hasta que la cerramos.
+Existen dos ciclos de vida; uno en el appDelegate, que controla toda la app, y cada controller tiene su propio ciclo de vida.
+FOREGROUND -> viendo nuestra aplicación en primer plano.
+BACKGROUNG -> nuestra aplicación pasa a segundo plano
+
+didFinishLaunchingWithOptions -> es cuando nuestra app ya cargo.
+applicationWillResignActive -> pasar de modo FOREGROUND a BACKGROUND (funciona como puente)
+applicationDidEnterBackground -> cuando la app ya entro en BACKGROUND
+applicationWillEnterForeground -> cuando la app va entrar en FOREGROUND
+applicationDidBecomeActive -> aquí está por completo en FOREGROUND
+applicationWillTerminate -> cuando cerramos la app
+
+Ciclo de vida de ViewController
+loadView -> antes de que la app cargue por completo
+viewDidLoad -> cuanto la vista ya cargo, puede ser en memoria RAM y no en forma visible
+viewWillAppear -> cuando la vista va a hacer visible
+viewDidAppear -> cuando ya vemos la vista
+viewWillDisappear -> cuando la vista va a desaparecer
+viewDidDisappear -> cuando la vista ya desaparecio por completo
+didReceiveMemoryWarning -> se activa cuando hay problemas de memoria
+
+
+UserDefault -> guardar información con llave valor(de forma muy básica)
